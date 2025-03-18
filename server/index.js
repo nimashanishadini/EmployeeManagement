@@ -7,7 +7,7 @@ import connectToDatabase from './db/db.js'
 
 connectToDatabase()
 
-dotenv.config(); // ✅ Load environment variables
+dotenv.config(); // 
 
 const app = express();
 app.use(cors());
@@ -18,4 +18,5 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => { 
     console.log(`Server is Running on Port ${PORT}`);
+    console.log('MongoDB Connected Successfully');
 });

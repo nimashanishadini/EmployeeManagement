@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -7,36 +7,40 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const {login} = useAuth()
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => { 
-    
-    e.preventDefault(); 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        { email, password }
-      );
-
-
+      const response = await axios.post("http://localhost:5000/api/auth/login", {
+        email,
+        password,
+      });
 
       if (response.data.success) {
-       login(response.data.user)
-       localStorage.setItem("token",response.data.token)
-       if(response.data.user.role === "admin"){
-        navigate ('/admin-dashboard')
-       }else{
-        navigate("/employee")
-       }
-      }    
+        login(response.data.user);
+        localStorage.setItem("token", response.data.token);
+        
+        // Navigate based on role
+        if (response.data.user.role === "admin") {
+          navigate("/admin-dashboard");
+        } else {
+          navigate("/employee");
+        }
+      }
     } catch (error) {
       if (error.response && error.response.data && !error.response.data.success) {
         setError(error.response.data.error || "Invalid credentials. Please try again.");
       } else {
         setError("Server Error. Please try again later.");
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,7 +90,6 @@ const Login = () => {
           Login
         </h2>
 
-        {/* Error Message Display */}
         {error && (
           <p
             style={{
@@ -154,20 +157,21 @@ const Login = () => {
 
           <button
             type="submit"
+            disabled={loading}
             style={{
               width: "100%",
               padding: "10px",
               marginTop: "15px",
-              backgroundColor: "#008080",
+              backgroundColor: loading ? "#ccc" : "#008080",
               color: "#fff",
               border: "none",
               borderRadius: "5px",
-              cursor: "pointer",
+              cursor: loading ? "not-allowed" : "pointer",
               fontSize: "16px",
               fontWeight: "bold",
             }}
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
       </div>
