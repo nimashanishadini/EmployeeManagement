@@ -30,7 +30,7 @@ const AdminSideBar = () => {
         left: "0",
       }}
     >
-      <div style={{ color: "#fff", }}>
+      <div style={{ color: "#fff" }}>
         {/* Employee Management System */}
         <div style={{ textAlign: "left", marginBottom: "20px" }}>
           <h2>Employee Management <span style={{marginLeft:"75px"}}>System</span></h2>
@@ -46,7 +46,7 @@ const AdminSideBar = () => {
       <button
         style={{
           ...buttonStyle,
-          backgroundColor: isHovered === 0 ? "#0056b3" : "transparent",
+          backgroundColor: isHovered === 0 ? "#38b2ac" : "transparent",
         }}
         onClick={() => navigate("/admin-dashboard")}
         onMouseEnter={() => handleMouseEnter(0)}
@@ -58,7 +58,7 @@ const AdminSideBar = () => {
       <button
         style={{
           ...buttonStyle,
-          backgroundColor: isHovered === 1 ? "#0056b3" : "transparent",
+          backgroundColor: isHovered === 1 ? "#38b2ac" : "transparent",
         }}
         onClick={() => navigate("/employee")}
         onMouseEnter={() => handleMouseEnter(1)}
@@ -70,7 +70,7 @@ const AdminSideBar = () => {
       <button
         style={{
           ...buttonStyle,
-          backgroundColor: isHovered === 2 ? "#0056b3" : "transparent",
+          backgroundColor: isHovered === 2 ? "#38b2ac" : "transparent",
         }}
         onClick={() => navigate("/leaves")}
         onMouseEnter={() => handleMouseEnter(2)}
@@ -82,7 +82,7 @@ const AdminSideBar = () => {
       <button
         style={{
           ...buttonStyle,
-          backgroundColor: isHovered === 3 ? "#0056b3" : "transparent",
+          backgroundColor: isHovered === 3 ? "#38b2ac" : "transparent",
         }}
         onClick={() => navigate("/salary")}
         onMouseEnter={() => handleMouseEnter(3)}
@@ -94,7 +94,7 @@ const AdminSideBar = () => {
       <button
         style={{
           ...buttonStyle,
-          backgroundColor: isHovered === 4 ? "#0056b3" : "transparent",
+          backgroundColor: isHovered === 4 ? "#38b2ac" : "transparent",
         }}
         onClick={() => navigate("/settings")}
         onMouseEnter={() => handleMouseEnter(4)}
@@ -104,18 +104,7 @@ const AdminSideBar = () => {
       </button>
 
       {/* Logout Button */}
-      <button
-        style={{
-          ...buttonStyle,
-          backgroundColor: isHovered === 5 ? "#0056b3" : "transparent",
-          marginTop: "75px",
-        }}
-        onClick={() => navigate("/login")}
-        onMouseEnter={() => handleMouseEnter(5)}
-        onMouseLeave={handleMouseLeave}
-      >
-        <FaSignOutAlt style={{ marginRight: "10px" }} /> Logout
-      </button>
+      
     </div>
   );
 };
